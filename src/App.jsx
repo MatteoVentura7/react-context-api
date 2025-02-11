@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AlertProvider } from "./contexts/AlertContext";
 // Layouts
 import DefaultLayout from "./layouts/DefaultLayout";
 // Pages
@@ -11,17 +12,19 @@ import Pizza from "./pages/Pizza";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<DefaultLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/menu/:id" element={<Pizza />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/contacts" element={<ContactUs />} />
-        </Route>
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <AlertProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<DefaultLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/menu/:id" element={<Pizza />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/contacts" element={<ContactUs />} />
+          </Route>
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </AlertProvider>
   );
 }
